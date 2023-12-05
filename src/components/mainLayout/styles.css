@@ -1,0 +1,67 @@
+.mainArea{
+    content: space-between;
+    align-items: center;
+    padding: 0rem;
+}
+
+.cpuArea{
+    display: flex;
+    height: 30vh;
+    width: 100%;
+    min-height: 100px;
+    background-color: blueviolet;
+    align-items: center;
+    justify-content: center;
+}
+
+.secondArea{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 70vh;
+    width: 100%;
+    /* min-height: 300px; */
+    background-color: red;
+}
+
+.leftArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: brown}
+
+.networkArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: orange;
+}
+
+.memoryArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
+
+
+.processArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: green;
+}
