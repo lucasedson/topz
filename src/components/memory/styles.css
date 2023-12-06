@@ -14,30 +14,35 @@
 .totalMemoryInfo{
     
     position: absolute;
-    top: calc(35%);
-    left: 35%;
-    
+    top: calc(30%);
+    left: 25%;  
 
-     width: 60%;
-     justify-content: center;
-     align-items: center;
-     /* position: static; */
- 
+     width: 50%;
+    max-width: 50%;
+    min-width: 50%;
 
 }
 
-.memoryChart{
-    opacity: 1;   
-
-}
 
 .memoryInfo{
-    margin-left: 50px;
+    margin-left: 30px;
     margin-top: 15px;
     margin-bottom: 15px;
-    /* justify-content: center; */
+    justify-content: center;
+    align-items: center;
+}
+.memoryArea--container h3{
+    text-align: center;
+    font-weight: 900;
 }
 
-p{
+.memoryArea--container p{
+    text-align: center;
+    font-weight: 300;
     font-size: small;
+}
+
+.memoryArea--container h1{
+    text-align: center;
+    font-weight: 900;
 }

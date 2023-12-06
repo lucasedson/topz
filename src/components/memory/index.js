@@ -13,7 +13,7 @@ export default function MemoryArea(props) {
           labels: ['Memory', 'Free'],
       datasets: [
         {
-          label: '',
+          label: 'Used',
           backgroundColor: [
               '#F0012C',
             '#000AF9'
@@ -43,44 +43,19 @@ export default function MemoryArea(props) {
             data={state}
             options={
               {
-                  cutoutPercentage: 0,
-                  circumference: 360,
+                  borderRadius: 0,
+                  responsive: true,
                   rotation: -90,
-
-                  plugins: {
-                      datalabels: {
-                        display: true,
-                        backgroundColor: '#ccc',
-                        borderRadius: 30,
-                        font: {
-                          color: 'red',
-                          weight: 'bold',
-                        },
-                      },
-                      doughnutlabel: {
-                          labels: [
-                            {
-                              text: '550',
-                              font: {
-                                size: 20,
-                                weight: 'bold',
-                              },
-                            },
-                            {
-                              text: 'total',
-                            },
-                          ],
-                        },
-                      
-                    }
-                  
+                  // cutoutPercentage: 90,
+                  cutout: 58
+          
                   }
                   
               }       
             />
 
           <div className='totalMemoryInfo'>
-              <h6>Memory</h6>
+              <p>Memory</p>
               <h1>{
               (parseFloat(bytesToGB(props.memory.used)) / bytesToGB(props.memory.total) * 100).toFixed(0)}%</h1>
           </div>
@@ -98,7 +73,7 @@ export default function MemoryArea(props) {
               <p>Free Memory</p>
               <h3>{parseFloat(bytesToGB(props.memory.free))} GB</h3>
 
-              <p>Avaliabe Memory</p>
+              <p>Avaliabe</p>
               <h3>{parseFloat(bytesToGB(props.memory.available))} GB</h3>
           </div>
         </div>
