@@ -9,13 +9,20 @@ Chart.register(ArcElement)
 
 
 export default function MemoryArea() {
-    const [object, setObject] = useState('');
+    const [object, setObject] = useState({
+        memory: {
+            total: 0,
+            used: 0,
+            free: 0,
+            available: 0
+        }
+    });
     
     
     useEffect(() => {
-        setInterval(() =>{
+        setInterval(async() =>{
             
-            invoke('get_all_informations', { name: 'Next.js' })
+           await invoke('get_all_informations', { name: 'Next.js' })
             .then(result => setObject(result))
             .catch(console.error)
             
