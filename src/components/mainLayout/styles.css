@@ -9,7 +9,7 @@
     height: 30vh;
     width: 100%;
     min-height: 100px;
-    background-color: blueviolet;
+    background-color: rgb(20, 5, 34);
     align-items: center;
     justify-content: center;
 }
@@ -22,8 +22,8 @@
 
     height: 70vh;
     width: 100%;
+    background-color: var(--background);
     /* min-height: 300px; */
-    background-color: red;
 }
 
 .leftArea{
@@ -33,7 +33,8 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    background-color: brown}
+    
+}
 
 .networkArea{
     display: flex;
@@ -42,7 +43,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    background-color: orange;
+    background-color: rgb(19, 5, 34);
 }
 
 .memoryArea{
@@ -63,5 +64,5 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    background-color: green;
+    background-color: rgb(3, 13, 24);
 }

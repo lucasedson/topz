@@ -1,0 +1,43 @@
+.memorArea{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.memoryChartArea{
+    width: 60%;
+    position: relative;
+
+
+}
+
+.totalMemoryInfo{
+    
+    position: absolute;
+    top: calc(35%);
+    left: 35%;
+    
+
+     width: 60%;
+     justify-content: center;
+     align-items: center;
+     /* position: static; */
+ 
+
+}
+
+.memoryChart{
+    opacity: 1;   
+
+}
+
+.memoryInfo{
+    margin-left: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /* justify-content: center; */
+}
+
+p{
+    font-size: small;
+}
