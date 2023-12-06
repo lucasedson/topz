@@ -1,34 +1,14 @@
-'use client'
-import { useEffect, useState } from 'react';
-import { invoke } from '@tauri-apps/api/tauri'
 import {Chart, ArcElement } from "chart.js";
 import {Doughnut} from 'react-chartjs-2';
 import  './styles.css'
-
 Chart.register(ArcElement)
 
 
-export default function MemoryArea() {
-    const [object, setObject] = useState({
-        memory: {
-            total: 0,
-            used: 0,
-            free: 0,
-            available: 0
-        }
-    });
-    
-    
-    useEffect(() => {
-        setInterval(async() =>{
-            
-           await invoke('get_all_informations', { name: 'Next.js' })
-            .then(result => setObject(result))
-            .catch(console.error)
-            
-        }, 1000)
-    }, [])
-    
+function bytesToGB(bytes) {
+  return (bytes / 1024 / 1024 / 1024).toFixed(2);
+}
+
+export default function MemoryArea(props) {
     let state = {
           labels: ['Memory', 'Free'],
       datasets: [
@@ -46,7 +26,7 @@ export default function MemoryArea() {
           borderColor: [
               '#001f3f',
           ],
-          data: [(object.memory.used / 1024 / 1024 / 1024).toFixed(2), (object.memory.available / 1024 / 1024 / 1024).toFixed(2)]
+          data: [bytesToGB(props.memory.used), bytesToGB(props.memory.available)]
         
         
         }
@@ -56,73 +36,71 @@ export default function MemoryArea() {
 
     return (
       <main>
-        <div className='memorArea'>
+        <div className='memoryArea--container'>
         <div className='memoryChartArea'>
 
-        <Doughnut className='memoryChart'          
-          data={state}
-          options={
-            {
-                cutoutPercentage: 0,
-                circumference: 360,
-                rotation: -90,
+          <Doughnut className='memoryChart'          
+            data={state}
+            options={
+              {
+                  cutoutPercentage: 0,
+                  circumference: 360,
+                  rotation: -90,
 
-                plugins: {
-                    datalabels: {
-                      display: true,
-                      backgroundColor: '#ccc',
-                      borderRadius: 30,
-                      font: {
-                        color: 'red',
-                        weight: 'bold',
+                  plugins: {
+                      datalabels: {
+                        display: true,
+                        backgroundColor: '#ccc',
+                        borderRadius: 30,
+                        font: {
+                          color: 'red',
+                          weight: 'bold',
+                        },
                       },
-                    },
-                    doughnutlabel: {
-                        labels: [
-                          {
-                            text: '550',
-                            font: {
-                              size: 20,
-                              weight: 'bold',
+                      doughnutlabel: {
+                          labels: [
+                            {
+                              text: '550',
+                              font: {
+                                size: 20,
+                                weight: 'bold',
+                              },
                             },
-                          },
-                          {
-                            text: 'total',
-                          },
-                        ],
-                      },
-                    
+                            {
+                              text: 'total',
+                            },
+                          ],
+                        },
+                      
+                    }
+                  
                   }
-                
-                }
-                
-            }       
-          />
+                  
+              }       
+            />
 
-        <div className='totalMemoryInfo'>
-            <h6>Memory</h6>
-            <h1>{
-            (parseFloat((object.memory.used / 1024 / 1024 / 1024)) / 8 * 100).toFixed(0)
-            
-            }%</h1>
-            </div>
+          <div className='totalMemoryInfo'>
+              <h6>Memory</h6>
+              <h1>{
+              (parseFloat(bytesToGB(props.memory.used)) / bytesToGB(props.memory.total) * 100).toFixed(0)}%</h1>
+          </div>
 
-        </div>
+          </div>
 
-        <div className='memoryInfo'>
-        <p>Total Memory</p>
-            <h3
-            >{parseFloat(Math.round(object.memory.total / 1024 / 1024 / 1024))} GB</h3>
+          <div className='memoryInfo'>
+          <p>Total Memory</p>
+              <h3
+              >{parseFloat(Math.round(bytesToGB(props.memory.total)))} GB</h3>
 
-            <p>Used Memory</p>
-            <h3>{parseFloat((object.memory.used / 1024 / 1024 / 1024).toFixed(2))} GB</h3>
+              <p>Used Memory</p>
+              <h3>{parseFloat(bytesToGB(props.memory.used))} GB</h3>
 
-            <p>Free Memory</p>
-            <h3>{parseFloat((object.memory.free / 1024 / 1024 / 1024).toFixed(2))} GB</h3>
+              <p>Free Memory</p>
+              <h3>{parseFloat(bytesToGB(props.memory.free))} GB</h3>
 
-            <p>Avaliabe Memory</p>
-            <h3>{parseFloat((object.memory.available / 1024 / 1024 / 1024).toFixed(2))} GB</h3>
-        </div>
+              <p>Avaliabe Memory</p>
+              <h3>{parseFloat(bytesToGB(props.memory.available))} GB</h3>
+          </div>
         </div>
       </main>
     )
